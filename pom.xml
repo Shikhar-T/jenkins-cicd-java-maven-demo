@@ -9,10 +9,10 @@
   <url>https://github.com/tongueroo/demo-java</url>
 
   <properties>
-    <!-- Strictly enforce Java 21 -->
-    <maven.compiler.release>21</maven.compiler.release>
+    <!-- Updated to Java 17 for EC2 compatibility -->
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Plugin Versions (Latest for 2026) -->
+    <!-- Latest Plugin Versions for 2026 -->
     <compiler.plugin.version>3.13.0</compiler.plugin.version>
     <war.plugin.version>3.4.0</war.plugin.version>
   </properties>
@@ -20,17 +20,17 @@
   <build>
     <finalName>demo</finalName>
     <plugins>
-      <!-- Compiler Plugin configured for Java 21 -->
+      <!-- Compiler Plugin configured for Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${compiler.plugin.version}</version>
         <configuration>
-          <release>21</release>
+          <release>17</release>
         </configuration>
       </plugin>
 
-      <!-- WAR Plugin updated to support Java 21 internals -->
+      <!-- WAR Plugin supporting Java 17+ internals -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
