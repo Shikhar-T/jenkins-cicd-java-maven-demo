@@ -7,15 +7,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     margin: 0;
     /* Emoji-friendly font stack */
     font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
     text-align: center;
   }
-  h2 { font-size: 80px; }
-  h3 { font-size: 50px; }
-  .emoji { font-size: 150px; margin: 20px 0; }
+  h2 { font-size: 70px; }
+  h3 { font-size: 40px; }
+  .emoji { font-size: 130px; margin: 20px 0; }
 </style>
 </head>
 <body>
