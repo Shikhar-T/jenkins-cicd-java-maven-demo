@@ -7,40 +7,56 @@
   <version>1.0-SNAPSHOT</version>
   <name>Demo Maven Webapp</name>
   <url>https://github.com/tongueroo/demo-java</url>
+
+  <properties>
+    <!-- Use the 'release' property for Java 21 compatibility -->
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <build>
     <finalName>demo</finalName>
-    <sourceDirectory>src</sourceDirectory>
+    <!-- Removed <sourceDirectory>src</sourceDirectory> as Maven defaults to src/main/java -->
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>3.13.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <release>21</release>
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.0.0</version>
+        <!-- Version 3.4.0+ is required to fix the 'Error injecting' issue on Java 17/21 -->
+        <version>3.4.0</version>
       </plugin>
     </plugins>
   </build>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <!-- Updated from 3.8.1 to 4.13.2 for modern test runner compatibility -->
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- IMPORTANT: log4j 1.2.17 has critical vulnerabilities. 
+         Replaced with reload4j 1.2.25 which is the safe drop-in replacement -->
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <groupId>ch.qos.reload4j</groupId>
+      <artifactId>reload4j</artifactId>
+      <version>1.2.25</version>
     </dependency>
+
     <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
+        <version>4.0.1</version>
+        <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
