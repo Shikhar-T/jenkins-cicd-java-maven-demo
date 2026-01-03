@@ -9,49 +9,56 @@
   <url>https://github.com/tongueroo/demo-java</url>
 
   <properties>
-    <!-- Use the 'release' property for Java 21 compatibility -->
+    <!-- Strictly enforce Java 21 -->
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Plugin Versions (Latest for 2026) -->
+    <compiler.plugin.version>3.13.0</compiler.plugin.version>
+    <war.plugin.version>3.4.0</war.plugin.version>
   </properties>
 
   <build>
     <finalName>demo</finalName>
-    <!-- Removed <sourceDirectory>src</sourceDirectory> as Maven defaults to src/main/java -->
     <plugins>
+      <!-- Compiler Plugin configured for Java 21 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
+        <version>${compiler.plugin.version}</version>
         <configuration>
           <release>21</release>
         </configuration>
       </plugin>
+
+      <!-- WAR Plugin updated to support Java 21 internals -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <!-- Version 3.4.0+ is required to fix the 'Error injecting' issue on Java 17/21 -->
-        <version>3.4.0</version>
+        <version>${war.plugin.version}</version>
+        <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
+    <!-- Modern JUnit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <!-- Updated from 3.8.1 to 4.13.2 for modern test runner compatibility -->
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     
-    <!-- IMPORTANT: log4j 1.2.17 has critical vulnerabilities. 
-         Replaced with reload4j 1.2.25 which is the safe drop-in replacement -->
+    <!-- Secure replacement for Log4j 1.2.17 -->
     <dependency>
       <groupId>ch.qos.reload4j</groupId>
       <artifactId>reload4j</artifactId>
       <version>1.2.25</version>
     </dependency>
 
+    <!-- Updated Servlet API -->
     <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
